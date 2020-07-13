@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ctk</groupId>
+    <artifactId>ctk-parent</artifactId>
+    <version>2.0.0</version>
+    <modules>
+        <module>ctk-common</module>
+        <module>ctk-eureka-7001</module>
+        <module>ctk-service-user</module>
+        <module>ctk-service-80</module>
+        <module>ctk-service-user8002</module>
+        <module>ctk-service-feign80</module>
+        <module>ctk-gateway</module>
+        <module>ctk-config</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <!--
+    子模块继承之后，提供作用：锁定版本+子modlue不用写groupId和version
+     dependencyManagement 仅定义不引入 和  dependencies引入y
+    -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.2.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring cloud alibaba 2.1.0.RELEASE-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <!--<repository>-->
+        <!--<id>nexus</id>-->
+        <!--<name>Team Nexus Repository</name>-->
+        <!--<url>http://192.165.4.200:28081/nexus/content/groups/public</url>-->
+        <!--</repository>-->
+
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun maven Repository</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+
+        <repository>
+            <id>mvnrepository.com</id>
+            <name>mvnrepository</name>
+            <url>http://mvnrepository.com/artifact</url>
+        </repository>
+
+    </repositories>
+
+    <pluginRepositories>
+        <!-- team plugin -->
+        <!--<pluginRepository>-->
+        <!--<id>nexus</id>-->
+        <!--<name>Team Nexus Repository</name>-->
+        <!--<url>http://192.165.4.200:28081/nexus/content/groups/public</url>-->
+        <!--</pluginRepository>-->
+
+        <!-- aliyun plugin -->
+        <pluginRepository>
+            <id>maven-net-cn</id>
+            <name>aliyun plguin</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <addResources>true</addResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <!-- 上传jar到伺服器 -->
+    <!--<distributionManagement>-->
+    <!--<repository>-->
+    <!--<id>releases</id>-->
+    <!--<name>Local Nexus Repository</name>-->
+    <!--<url>http://192.165.4.200:28081/nexus/content/repositories/releases</url>-->
+    <!--</repository>-->
+    <!--<snapshotRepository>-->
+    <!--<id>snapshots</id>-->
+    <!--<name>Local Nexus Repository</name>-->
+    <!--<url>http://192.165.4.200:28081/nexus/content/repositories/snapshots</url>-->
+    <!--</snapshotRepository>-->
+    <!--</distributionManagement>-->
+
+
+</project>
